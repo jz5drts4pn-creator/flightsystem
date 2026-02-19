@@ -40,6 +40,7 @@ def home(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('accounts.urls')),
     path('', home, name='home'),
     path('users/', include('users.urls')),
     path('accounts/', include('accounts.urls')),
@@ -47,6 +48,5 @@ urlpatterns = [
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),
 ]
 
