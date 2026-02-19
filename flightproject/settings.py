@@ -16,21 +16,11 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 
-# ✅ DEFINE BASE_DIR FIRST
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ✅ SECURITY
-SECRET_KEY = config('DJANGO_SECRET_KEY')
-
-# ✅ DEBUG
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-# ✅ ALLOWED HOSTS
-ALLOWED_HOSTS = [
-    'flightsystem-2.onrender.com',
-    'localhost',
-    '127.0.0.1'
-]
+SECRET_KEY = config('DJANGO_SECRET_KEY', default='unsafe-secret-key')
+DEBUG = config('DEBUG', default=True, cast=bool)
+ALLOWED_HOSTS = ['flightsystem-2.onrender.com']
 
 
 INSTALLED_APPS = [
@@ -95,10 +85,8 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_STORAGE= 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Security for production
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
