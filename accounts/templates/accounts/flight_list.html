@@ -1,0 +1,19 @@
+<h2>Available Flights</h2>
+
+<form method="get">
+    <input type="text" name="departure" placeholder="Departure Airport Code">
+    <input type="text" name="arrival" placeholder="Arrival Airport Code">
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+{% for flight in flights %}
+    <li>
+        {{ flight.departure_airport.code }} → {{ flight.arrival_airport.code }} |
+        ${{ flight.price }} |
+        <a href="{% url 'book_flight' flight.id %}">Book</a>
+    </li>
+{% empty %}
+    <li>No flights found</li>
+{% endfor %}
+</ul>
