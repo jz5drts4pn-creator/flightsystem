@@ -26,7 +26,12 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # ✅ ALLOWED HOSTS
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
+ALLOWED_HOSTS = [
+    'flightsystem-2.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
