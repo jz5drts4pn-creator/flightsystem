@@ -12,19 +12,21 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from pathlib import Path
 from decouple import config
 import dj_database_url
 
-DATABASES = {
-    'default': dj_database_url.config(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
-}
-
-
+# ✅ DEFINE BASE_DIR FIRST
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-l8e60c##pgqzll_bqa!2%-5!)kzxqs9s6zgvc^c=ie9klh5mgc'
+# ✅ SECURITY
+SECRET_KEY = config('DJANGO_SECRET_KEY')
+
+# ✅ DEBUG
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ['127.0.0.1:8000', 'localhost']
+
+# ✅ ALLOWED HOSTS
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -68,10 +70,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'flightproject.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
