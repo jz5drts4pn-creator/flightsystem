@@ -1,1 +1,1 @@
-web: gunicorn flightproject.wsgi
+web: gunicorn flightproject.wsgi --bind 0.0.0.0:$PORT

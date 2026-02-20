@@ -16,36 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.contrib import admin
-from django.urls import path, include
 from django.http import HttpResponse
 
-from django.shortcuts import render
-from accounts.models import Flight, Booking
-from django.contrib.auth.decorators import login_required
-
-@login_required
 def home(request):
-    total_flights = Flight.objects.count()
-    total_bookings = Booking.objects.filter(user=request.user).count()
-    return render(request, 'accounts/home.html', {
-        'total_flights': total_flights,
-        'total_bookings': total_bookings
-    })
-
-
-
-urlpatterns = [
-path('', include('accounts.urls')),
-path('', home, name='home'),
-]
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-    path('accounts/', include('accounts.urls')),
-]
+    return HttpResponse("Flight System is Live ✈️")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home),
 ]
-

@@ -13,9 +13,10 @@ from django.contrib import messages
 
 @login_required
 def home(request):
+    return render(request, 'accounts/home.html')
     total_flights = Flight.objects.count()
     total_bookings = Booking.objects.filter(user=request.user).count()
-    return render(request, 'accounts/home.html')
+    
     # Popular routes (departure → arrival)
     popular_routes = (
         Booking.objects

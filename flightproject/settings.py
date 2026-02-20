@@ -15,12 +15,13 @@ from django.contrib.messages import constants as messages
 from pathlib import Path
 from decouple import config
 import dj_database_url
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('DJANGO_SECRET_KEY', default='unsafe-secret-key')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
 DEBUG = config('DEBUG', default=True, cast=bool)
-ALLOWED_HOSTS = ['flightsystem-2.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
