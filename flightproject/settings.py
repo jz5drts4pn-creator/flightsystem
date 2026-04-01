@@ -105,3 +105,6 @@ MESSAGE_TAGS = {
     messages.WARNING: 'bg-yellow-200 text-yellow-800',
     messages.ERROR: 'bg-red-200 text-red-800',
 }
+
+LOGIN_REDIRECT_URL = '/'         # where to go after login
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # where to go after logout

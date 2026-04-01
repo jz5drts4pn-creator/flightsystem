@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.urls import path
-from accounts.views import home  # 👈 import your real view
+from django.urls import path, include
+from accounts.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),  # 👈 homepage now uses accounts view
+    path('accounts/', include('django.contrib.auth.urls')),  # 👈 login/logout/password
+    path('', home, name='home'),
 ]
