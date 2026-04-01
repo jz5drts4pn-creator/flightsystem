@@ -9,7 +9,6 @@ from .models import Flight, Booking
 def home(request):
     return render(request, 'accounts/home.html')
 
-
 # ✈️ List all flights (no filters yet)
 def flight_list(request):
     flights = Flight.objects.all()
